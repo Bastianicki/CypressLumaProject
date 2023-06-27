@@ -27,9 +27,11 @@ describe('Magento Shop Application', () => {
         const expectedTitle = 'Home Page';
         const expectedTextInElement = `Welcome, ${UserData.userName}!`;
 
-        cy.wait(5000);
+        cy.wait(4000);
         cy.title().should('equal', expectedTitle);
-        cy.xpath(mainPageHeader.welcomeMessage).invoke('text').should('equal', expectedTextInElement);
+        mainPageHeader.elements.welcomeMessage()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     });
 
     it('should not login to the application due to incorrect credentials', () => {
@@ -40,15 +42,15 @@ describe('Magento Shop Application', () => {
         // Act:
         loginPage
             .fillEmailField(RandomData.generateRandomEmailAddress())
-            .fillPasswordField(RandomData.generateRandomPassword(10))
+            .fillPasswordField(RandomData.generateRandomPassword(20))
             .clickOnSignInButton();
 
         // Assert:
         const expectedTitle = 'Customer Login';
         const expectedTextInElement = 'The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.';
 
-        cy.wait(5000);
+        cy.wait(3000);
         cy.title().should('equal', expectedTitle);
-        cy.get(loginPage.alertAccountSignIncorrect).invoke('text').should('equal', expectedTextInElement);
+        loginPage.elements.alertAccountSignIncorrect().invoke('text').should('equal', expectedTextInElement);
     })
 });

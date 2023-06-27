@@ -1,79 +1,87 @@
 export default class MainPageHeader{
     
-    welcomeMessage = "//div[@class='panel header']//li[1]//span";
+    elements = {
 
-    signInButton = "//div[@class='panel header']//li[@class='authorization-link']//a";
-    createAnAccountButton = "//div[@class='panel header']//li[3]//a";
+        // Panel Header
+        // Welcome mWssage
+        welcomeMessage : () => cy.xpath("//div[@class='panel header']//li[1]//span"),
 
-    actionButton = ":nth-child(2) > .customer-welcome > .customer-name > .action";
-    myAccountOption = ":nth-child(2) > .customer-welcome > .customer-menu > .header > :nth-child(1) > a"
-    myWishListOption = ":nth-child(2) > .customer-welcome > .customer-menu > .header > .link > a";
-    signOutOption = ":nth-child(2) > .customer-welcome > .customer-menu > .header > .authorization-link > a";
+        // Header Links
+        signInButton : () => cy.xpath("//div[@class='panel header']//li[@class='authorization-link']//a"),
+        createAnAccountButton : () => cy.xpath("//div[@class='panel header']//li[3]//a"),
 
-    whatsNewMenuItem = "#ui-id-3";
-    womenMenuItem = "#ui-id-4";
-    menMenuItem = "#ui-id-5";
-    gearMenuItem = "#ui-id-6";
-    trainingMenuItem = "#ui-id-7";
-    saleMenuItem = "#ui-id-8";
+        // Customer Menu
+        actionButton : () => cy.get(":nth-child(2) > .customer-welcome > .customer-name > .action"),
+        myAccountOption : () => cy.get(":nth-child(2) > .customer-welcome > .customer-menu > .header > :nth-child(1) > a"),
+        myWishListOption : () => cy.get(":nth-child(2) > .customer-welcome > .customer-menu > .header > .link > a"),
+        signOutOption : () => cy.get(":nth-child(2) > .customer-welcome > .customer-menu > .header > .authorization-link > a"),
+
+        // Tab Panel
+        whatsNewMenuItem : () => cy.get("#ui-id-3"),
+        womenMenuItem : () => cy.get("#ui-id-4"),
+        menMenuItem : () => cy.get("#ui-id-5"),
+        gearMenuItem : () => cy.get("#ui-id-6"),
+        trainingMenuItem : () => cy.get("#ui-id-7"),
+        saleMenuItem : () => cy.get("#ui-id-8")
+    }
 
     clickOnSignInButton(){
-        cy.xpath(this.signInButton).click();
+        this.elements.signInButton().click();
         return this;
     }
 
     clickOnCreateAnAccountButton(){
-        cy.xpath(this.createAnAccountButton).click();
+        this.elements.createAnAccountButton().click();
         return this;
     }
 
     clickOnActionButton(){
-        cy.get(this.actionButton).click();
+        this.elements.actionButton().click();
         return this;
     }
 
     selectMyAccountOption(){
-        cy.get(this.myAccountOption).click();
+        this.elements.myAccountOption().click();
         return this;
     }
 
     selectMyWishListOption(){
-        cy.get(this.myWishListOption).click();
+        this.elements.myWishListOption().click();
         return this;
     }
 
     selectSignOutOption(){
-        cy.get(this.signOutOption).click();
+        this.elements.signOutOption().click();
         return this;
     }
 
     clickOnWhatsNewMenuItem(){
-        cy.get(this.whatsNewMenuItem).click();
+        this.elements.whatsNewMenuItem().click();
         return this;
     }
         
     clickOnWomenMenuItem(){
-        cy.get(this.womenMenuItem).click();
+        this.elements.womenMenuItem().click();
         return this;
     }
         
     clickOnMenMenuItem(){
-        cy.get(this.menMenuItem).click();
+        this.elements.menMenuItem().click();
         return this;
     }
         
     clickOnGearMenuItem(){
-        cy.get(this.gearMenuItem).click();
+        this.elements.gearMenuItem().click();
         return this;
     }
         
     clickOnTrainingMenuItem(){
-        cy.get(this.trainingMenuItem).click();
+        this.elements.trainingMenuItem().click();
         return this;
     }
         
     clickOnSaleMenuItem(){
-        cy.get(this.saleMenuItem).click();
+        this.elements.saleMenuItem().click();
         return this;
     }
 }

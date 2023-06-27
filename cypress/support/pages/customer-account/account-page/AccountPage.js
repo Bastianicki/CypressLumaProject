@@ -1,16 +1,33 @@
 export default class AccountPage {
 
-    messageSuccess = "//div[@data-ui-id='message-success']//child::div";
-    contactInformatonBox = "[class='box box-information']";
-    newsletterBox = "[class='box box-newsletter']";
-    defaultBillingAddressBox = "[class='box box-billing-address']";
-    defaultShippingAddressBox = "[class='box box-shipping-address']";
+    elements = {
 
-    editNewsletterSettingsButton = "//div[@class='box box-newsletter']//child::a[@class='action edit']"
-    generalSubscriptionCheckbox = "#subscription";
+    // MY ACCOUNT:
+    // Account Information
+    // Contact Information
+    contactInformatonBox : () => cy.get("[class='box box-information']"),
+
+    // Newsletters
+    newsletterBox : () => cy.get("[class='box box-newsletter']"),
+    editNewsletterSettingsButton : () => cy.xpath("//div[@class='box box-newsletter']//child::a[@class='action edit']"),
+
+    // Address Book
+    // Default Billing Address
+    defaultBillingAddressBox : () => cy.get("[class='box box-billing-address']"),
+
+    // Default Shipping Address
+    defaultShippingAddressBox : () => cy.get("[class='box box-shipping-address']"),
+
+    // NEWSLETTER SUBSCRIPTION:
+    generalSubscriptionCheckbox : () => cy.get("#subscription"),
+
+    // Messages:
+    messageSuccess : () => cy.xpath("//div[@data-ui-id='message-success']//child::div")
+
+    }
 
     clickOnEditNewsletterSettingsButton(){
-        cy.xpath(this.editNewsletterSettingsButton).click();
+        this.elements.editNewsletterSettingsButton().click();
         return this;
     }
 }

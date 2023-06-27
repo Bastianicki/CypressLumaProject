@@ -33,7 +33,11 @@ describe('Magento Shop Application', () => {
             .selectSignOutOption();
 
         // Assert: 
-        cy.xpath(mainPageHeader.signInButton, mainPageHeader.createAnAccountButton).should('be.visible');
+        mainPageHeader.elements
+            .signInButton(), 
+        mainPageHeader.elements
+            .createAnAccountButton()
+            .should('be.visible');
     });
 
     it('should login, open account and verify whether sections (account information and address book) are visible', () => {
@@ -54,10 +58,11 @@ describe('Magento Shop Application', () => {
             .selectMyAccountOption();
         
         // Assert:
-        cy.get(accountPage.contactInformatonBox).should('be.visible');
-        cy.get(accountPage.newsletterBox).should('be.visible');
-        cy.get(accountPage.defaultBillingAddressBox).should('be.visible');
-        cy.get(accountPage.defaultShippingAddressBox).should('be.visible');
+        accountPage.elements.contactInformatonBox(),
+        accountPage.elements.newsletterBox(),
+        accountPage.elements.defaultBillingAddressBox(),
+        accountPage.elements.defaultShippingAddressBox()
+            .should('be.visible');
     });
 
     it('should login, open account and verify whether checkbox for newsletter is unchecked', () => {
@@ -81,7 +86,9 @@ describe('Magento Shop Application', () => {
             .clickOnEditNewsletterSettingsButton();
         
         // Assert:
-        cy.get(accountPage.generalSubscriptionCheckbox).should('not.be.checked');
+        accountPage.elements
+            .generalSubscriptionCheckbox()
+            .should('not.be.checked');
 
     });
 

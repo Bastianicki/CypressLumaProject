@@ -33,7 +33,11 @@ describe('Magento Shop Application', () => {
 
         cy.wait(5000);
         cy.title().should('equal', expectedTitle);
-        cy.xpath(accountPage.messageSuccess).invoke('text').should('equal', expectedTextInElement);
+
+        accountPage.elements
+            .messageSuccess()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
 
     it ('Should not create an account as the email is already used', () =>{
@@ -52,7 +56,10 @@ describe('Magento Shop Application', () => {
 
         // Assert:
         const expectedTextInElement = 'There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.';
-        cy.get(createAccountPage.messageError).invoke('text').should('equal', expectedTextInElement);
+        createAccountPage.elements
+            .messageError()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
 
     it ('Should not create an account as the email is invalid', () =>{
@@ -71,7 +78,7 @@ describe('Magento Shop Application', () => {
 
         // Assert:
         const expectedTextInElement = 'Please enter a valid email address (Ex: johndoe@domain.com).';
-        cy.get(createAccountPage.emailAdressError).invoke('text').should('equal', expectedTextInElement);
+        createAccountPage.elements.emailAddressError().invoke('text').should('equal', expectedTextInElement);
     })
 
     it ('Should not create an account as the inputs in password field are not consistent', () =>{
@@ -91,7 +98,10 @@ describe('Magento Shop Application', () => {
 
         // Assert:
         const expectedTextInElement = 'Please enter the same value again.';
-        cy.get(createAccountPage.passwordConfirmationError).invoke('text').should('equal', expectedTextInElement);
+        createAccountPage.elements
+            .passwordConfirmationError()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
 
     it ('Should not create an account as input in the password field is not equal or greater than 8 symbols', () =>{
@@ -110,7 +120,7 @@ describe('Magento Shop Application', () => {
 
         // Assert:
         const expectedTextInElement = 'Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.';
-        cy.get(createAccountPage.passwordError).invoke('text').should('equal', expectedTextInElement);
+        createAccountPage.elements.passwordError().invoke('text').should('equal', expectedTextInElement);
     })
 
     it ('Should not create an account as input in the password field does not contain different classes of characters in password', () =>{
@@ -129,7 +139,9 @@ describe('Magento Shop Application', () => {
 
         // Assert:
         const expectedTextInElement = 'Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.';
-        cy.get(createAccountPage.passwordError).invoke('text').should('equal', expectedTextInElement);
+        createAccountPage.elements
+            .passwordError()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
-
 })

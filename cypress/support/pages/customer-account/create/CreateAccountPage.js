@@ -1,21 +1,31 @@
 import RandomData from '../../../test-data/RandomData.js';
 
 export default class CreateAccountPage {
-    firstNameField = "#firstname";
-    lastNameField = "#lastname";
-    signUpForNewsLetterCheckbox = "#is_subscribed";
-    emailField = "#email_address";
-    passwordField = "#password";
-    confirmPasswordField = "#password-confirmation";
-    createAnAccountButton = "button[title='Create an Account']";
-    messageError = ".message-error > div";
-    emailAdressError = "#email_address-error";
-    passwordConfirmationError = "#password-confirmation-error";
-    passwordError = "#password-error";
 
+    elements = {
+
+    // Create New Customer Account
+    // Personal Information
+    firstNameField : () => cy.get("#firstname"),
+    lastNameField : () => cy.get("#lastname"),
+    signUpForNewsLetterCheckbox : () => cy.get("#is_subscribed"),
+
+    // Sign-in Information
+    emailField : () => cy.get("#email_address"),
+    passwordField : () => cy.get("#password"),
+    confirmPasswordField : () => cy.get("#password-confirmation"),
+    createAnAccountButton : () => cy.get("button[title='Create an Account']"),
+
+    // Messages
+    messageError : () => cy.get(".message-error > div"),
+    emailAddressError : () => cy.get("#email_address-error"),
+    passwordConfirmationError : () => cy.get("#password-confirmation-error"),
+    passwordError : () => cy.get("#password-error")
+
+    }
 
     fillFirstNameField(firstName) {
-        cy.get(this.firstNameField).type(firstName);
+        this.elements.firstNameField().type(firstName);
         return this;
     }
 
@@ -25,7 +35,7 @@ export default class CreateAccountPage {
     }
 
     fillLastNameField(lastName) {
-        cy.get(this.lastNameField).type(lastName);
+        this.elements.lastNameField().type(lastName);
         return this;
     }
 
@@ -36,13 +46,13 @@ export default class CreateAccountPage {
 
     toggleSignUpForNewsLetterCheckbox(shouldClick) {
         if (shouldClick) {
-        cy.get(this.signUpForNewsLetterCheckbox).click();
+            this.elements.signUpForNewsLetterCheckbox().click();
         }
         return this;
     }
 
     fillEmailField(email) {
-        cy.get(this.emailField).type(email);
+        this.elements.emailField().type(email);
         return this;
     }
 
@@ -52,28 +62,28 @@ export default class CreateAccountPage {
     }
 
     fillFirstPasswordField(password) {
-        cy.get(this.passwordField).type(password);
+        this.elements.passwordField().type(password);
         return this;
     }
 
     fillSecondPasswordField(password) {
-        cy.get(this.confirmPasswordField).type(password);
+        this.elements.confirmPasswordField().type(password);
         return this;
     }
 
     fillBothPasswordFields(password) {
-        cy.get(this.passwordField).type(password);
-        cy.get(this.confirmPasswordField).type(password);
+        this.elements.passwordField().type(password);
+        this.elements.confirmPasswordField().type(password);
         return this;
     }
 
     fillBothPasswordFieldsWithRandom() {
-        const randomPassword = RandomData.generateRandomPassword(10);
+        const randomPassword = RandomData.generateRandomPassword(20);
         return this.fillBothPasswordFields(randomPassword);
     }
 
     clickOnCreateAnAccountButton() {
-        cy.get(this.createAnAccountButton).click();
+        this.elements.createAnAccountButton().click();
         return this;
     }
 }

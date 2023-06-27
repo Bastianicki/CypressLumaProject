@@ -2,14 +2,26 @@ import UserData from '../../../test-data/UserData.js';
 
 export default class LoginPage {
 
-    emailField = "#email";
-    passwordField = "#pass";
-    signInButton = "button.action.login.primary";
-    createAnAccountButton = "a.action.create.primary";
-    alertAccountSignIncorrect = "div[data-bind='html: $parent.prepareMessageForHtml(message.text)']";
+    elements ={
 
+    // Customer Login
+    // Registered Customers
+    emailField : () => cy.get("#email"),
+    passwordField : () => cy.get("#pass"),
+    signInButton : () => cy.get("button.action.login.primary"),
+
+
+    // New Customers
+    createAnAccountButton : () => cy.get("a.action.create.primary"),
+
+    // Messages
+    alertAccountSignIncorrect : () => cy.get("div[data-bind='html: $parent.prepareMessageForHtml(message.text)']")
+    
+    }
+
+    // Methods:
     fillEmailField(email) {
-        cy.get(this.emailField).type(email);
+        this.elements.emailField().type(email);
         return this;
     }
 
@@ -18,7 +30,7 @@ export default class LoginPage {
     }
 
     fillPasswordField(password) {
-        cy.get(this.passwordField).type(password);
+        this.elements.passwordField().type(password);
         return this;
     }
 
@@ -27,12 +39,12 @@ export default class LoginPage {
     }
 
     clickOnSignInButton() {
-        cy.get(this.signInButton).click();
+        this.elements.signInButton().click();
         return this;
     }
 
     clickOnCreateAnAccountButton() {
-        cy.get(this.createAnAccountButton).click();
+        this.elements.createAnAccountButton().click();
         return this;
     }
 }
