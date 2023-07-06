@@ -5,6 +5,8 @@ import MainPageHeader from "../support/pages/main-page/MainPageHeader";
 import ProductPage from "../support/pages/product-page/ProductPage";
 import RandomData from '../support/test-data/RandomData';
 import UserData from '../support/test-data/UserData';
+import Size from "../support/enums/Size";
+import Color from "../support/enums/Color";
 
 const loginPage = new LoginPage();
 const mainPageHeader = new MainPageHeader();
@@ -17,7 +19,7 @@ describe('Magento Shop Application', () => {
         cy.visit('https://magento.softwaretestingboard.com/');
     });
 
-    it('should login to the application and verify user-specific features', () => {
+    it('should add "Inez Full Zip Jacket" product to the cart', () => {
         // Arrange: Click on the login link
         //cy.get('.header.links').contains('Sign In').click();
         mainPageHeader
@@ -37,6 +39,8 @@ describe('Magento Shop Application', () => {
             .selectFirstItemFitered();
 
         productPage
+            .pickColorOfProduct(Color.Orange)
+            .pickSizeOfProduct(Size.M)
             .clickOnAddToCartButton();
 
 
