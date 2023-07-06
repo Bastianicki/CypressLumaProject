@@ -22,7 +22,13 @@ export default class MainPageHeader{
         menMenuItem : () => cy.get("#ui-id-5"),
         gearMenuItem : () => cy.get("#ui-id-6"),
         trainingMenuItem : () => cy.get("#ui-id-7"),
-        saleMenuItem : () => cy.get("#ui-id-8")
+        saleMenuItem : () => cy.get("#ui-id-8"),
+
+        // Search
+        searchEntireStoreField : () => cy.get("#search"),
+        searchButton : () => cy.get("['title='Search']"),
+        shoppingCartButton : () => cy.get("[class='action showcart']")
+
     }
 
     clickOnSignInButton(){
@@ -82,6 +88,21 @@ export default class MainPageHeader{
         
     clickOnSaleMenuItem(){
         this.elements.saleMenuItem().click();
+        return this;
+    }
+
+    typeInSearchField(input){
+        this.elements.searchEntireStoreField().type(input);
+        return this;
+    }
+
+    clickOnsearchButton(){
+        this.elements.searchButton().click();
+        return this;
+    }
+
+    clickOnShoppingCartButton(){
+        this.elements.shoppingCartButton().click();
         return this;
     }
 }
