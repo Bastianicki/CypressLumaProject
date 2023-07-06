@@ -1,22 +1,22 @@
-export default class SearchResultsElements{
+export default class SearchResultsElements {
 
-    getFirstItemFiltered(){
+    getFirstItemFiltered() {
         return cy.xpath("//ol[@class='products list items product-items']//child::li[1]");
     }
 
-    getSecondItemFiltered(){
+    getSecondItemFiltered() {
         return cy.xpath("//ol[@class='products list items product-items']//child::li[1]")
     }
 
-    getThirdItemFiltered(){
+    getThirdItemFiltered() {
         return cy.xpath("//ol[@class='products list items product-items']//child::li[3]")
     }
 
-    getFourthItemFiltered(){
+    getFourthItemFiltered() {
         return cy.xpath("//ol[@class='products list items product-items']//child::li[4]")
     }
 
-    getFifthItemFiltered(){
+    getFifthItemFiltered() {
         return cy.xpath("//ol[@class='products list items product-items']//child::li[5]");
     }
 }

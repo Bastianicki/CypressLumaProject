@@ -28,12 +28,12 @@ export default class AccountPageElements {
     }
 
     // NEWSLETTER SUBSCRIPTION:
-    getGeneralSubscriptionCheckbox(){
+    getGeneralSubscriptionCheckbox() {
         return cy.get("#subscription");
     }
 
     // Messages:
-    getMessageSuccess(){
+    getMessageSuccess() {
         return cy.xpath("//div[@data-ui-id='message-success']//child::div");
     }
 }

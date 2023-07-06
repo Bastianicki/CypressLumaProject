@@ -1,23 +1,23 @@
-export default class ProductPageElements{
+export default class ProductPageElements {
 
-    getPageTitle(){
+    getPageTitle() {
         return cy.get('span.base[data-ui-id="page-title-wrapper"][itemprop="name"]');
     }
 
     // buttons
-    getAddYourReviewButton(){
+    getAddYourReviewButton() {
         return cy.get("[class='action add']");
     }
 
-    getAddToCartButton(){
+    getAddToCartButton() {
         return cy.get("#product-addtocart-button");
     }
 
-    getAddToWishListButton(){
+    getAddToWishListButton() {
         return cy.xpath("//div[@class='product-addto-links']//child::a[class='action towishlist']");
     }
 
-    getAddToComapreButton(){
+    getAddToComapreButton() {
         return cy.xpath("//div[@class='product-addto-links']//child::a[@class='action tocompare']");
     }
 }

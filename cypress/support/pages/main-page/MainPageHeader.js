@@ -1,108 +1,81 @@
-export default class MainPageHeader{
+import MainPageHeaderElements from "../../elements/MainPageHeaderElements";
 
-    elements = {
+const elements = new MainPageHeaderElements();
 
-        // Panel Header
-        // Welcome mWssage
-        welcomeMessage : () => cy.xpath("//div[@class='panel header']//li[1]//span"),
+export default class MainPageHeader {
 
-        // Header Links
-        signInButton : () => cy.xpath("//div[@class='panel header']//li[@class='authorization-link']//a"),
-        createAnAccountButton : () => cy.xpath("//div[@class='panel header']//li[3]//a"),
-
-        // Customer Menu
-        actionButton : () => cy.get(":nth-child(2) > .customer-welcome > .customer-name > .action"),
-        myAccountOption : () => cy.get(":nth-child(2) > .customer-welcome > .customer-menu > .header > :nth-child(1) > a"),
-        myWishListOption : () => cy.get(":nth-child(2) > .customer-welcome > .customer-menu > .header > .link > a"),
-        signOutOption : () => cy.get(":nth-child(2) > .customer-welcome > .customer-menu > .header > .authorization-link > a"),
-
-        // Tab Panel
-        whatsNewMenuItem : () => cy.get("#ui-id-3"),
-        womenMenuItem : () => cy.get("#ui-id-4"),
-        menMenuItem : () => cy.get("#ui-id-5"),
-        gearMenuItem : () => cy.get("#ui-id-6"),
-        trainingMenuItem : () => cy.get("#ui-id-7"),
-        saleMenuItem : () => cy.get("#ui-id-8"),
-
-        // Search
-        searchEntireStoreField : () => cy.get("#search"),
-        searchButton : () => cy.get("[title='Search']"),
-        shoppingCartButton : () => cy.get("[class='action showcart']")
-
-    }
-
-    clickOnSignInButton(){
-        this.elements.signInButton().click();
+    clickOnSignInButton() {
+        elements.getSignInButton().click();
         return this;
     }
 
-    clickOnCreateAnAccountButton(){
-        this.elements.createAnAccountButton().click();
+    clickOnCreateAnAccountButton() {
+        elements.getCreateAnAccountButton().click();
         return this;
     }
 
-    clickOnActionButton(){
-        this.elements.actionButton().click();
+    clickOnActionButton() {
+        elements.getActionButton().click();
         return this;
     }
 
-    selectMyAccountOption(){
-        this.elements.myAccountOption().click();
+    selectMyAccountOption() {
+        elements.getMyAccountOption().click();
         return this;
     }
 
-    selectMyWishListOption(){
-        this.elements.myWishListOption().click();
+    selectMyWishListOption() {
+        elements.getMyWishListOption().click();
         return this;
     }
 
-    selectSignOutOption(){
-        this.elements.signOutOption().click();
+    selectSignOutOption() {
+        elements.getSignOutOption().click();
         return this;
     }
 
-    clickOnWhatsNewMenuItem(){
-        this.elements.whatsNewMenuItem().click();
-        return this;
-    }
-        
-    clickOnWomenMenuItem(){
-        this.elements.womenMenuItem().click();
-        return this;
-    }
-        
-    clickOnMenMenuItem(){
-        this.elements.menMenuItem().click();
-        return this;
-    }
-        
-    clickOnGearMenuItem(){
-        this.elements.gearMenuItem().click();
-        return this;
-    }
-        
-    clickOnTrainingMenuItem(){
-        this.elements.trainingMenuItem().click();
-        return this;
-    }
-        
-    clickOnSaleMenuItem(){
-        this.elements.saleMenuItem().click();
+    clickOnWhatsNewMenuItem() {
+        elements.getWhatsNewMenuItem().click();
         return this;
     }
 
-    typeInSearchField(input){
-        this.elements.searchEntireStoreField().type(input);
+    clickOnWomenMenuItem() {
+        elements.getWomenMenuItem().click();
         return this;
     }
 
-    clickOnsearchButton(){
-        this.elements.searchButton().click();
+    clickOnMenMenuItem() {
+        elements.getMenMenuItem().click();
         return this;
     }
 
-    clickOnShoppingCartButton(){
-        this.elements.shoppingCartButton().click();
+    clickOnGearMenuItem() {
+        elements.getGearMenuItem().click();
+        return this;
+    }
+
+    clickOnTrainingMenuItem() {
+        elements.getTrainingMenuItem().click();
+        return this;
+    }
+
+    clickOnSaleMenuItem() {
+        elements.getSaleMenuItem().click();
+        return this;
+    }
+
+    typeInSearchField(input) {
+        elements.getSearchEntireStoreField().type(input);
+        return this;
+    }
+
+    clickOnsearchButton() {
+        elements.getSearchButton().click();
+        return this;
+    }
+
+    clickOnShoppingCartButton() {
+        elements.getShoppingCartButton().click();
         return this;
     }
 }

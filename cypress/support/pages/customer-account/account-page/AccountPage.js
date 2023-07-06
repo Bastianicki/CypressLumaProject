@@ -4,7 +4,7 @@ const elements = new AccountPageElements();
 
 export default class AccountPage {
 
-    clickOnEditNewsletterSettingsButton(){
+    clickOnEditNewsletterSettingsButton() {
         elements.getNewsletterSettingsButton().click();
         return this;
     }
