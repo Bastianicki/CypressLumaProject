@@ -43,6 +43,7 @@ describe('Magento Shop Application', () => {
             .pickSizeOfProduct(Size.M)
             .clickOnAddToCartButton();
 
+            // in progress
 
         });
 

@@ -2,8 +2,10 @@ import MainPageHeader from "../support/pages/main-page/MainPageHeader";
 import LoginPage from "../support/pages/customer-account/login/LoginPage";
 import AccountPage from "../support/pages/customer-account/account-page/AccountPage";
 import AccountPageElements from "../support/elements/AccountPageElements";
+import MainPageHeaderElements from "../support/elements/MainPageHeaderElements";
 
 const mainPageHeader = new MainPageHeader();
+const elementsOfMainPageHeader = new MainPageHeaderElements();
 const loginPage = new LoginPage();
 const accountPage = new AccountPage();
 const elementsOfAccountPage = new AccountPageElements();
@@ -31,7 +33,7 @@ describe('Magento Shop Application', () => {
             .selectSignOutOption();
 
         // Assert: 
-        mainPageHeader.elements
+        elementsOfMainPageHeader
             .createAnAccountButton()
             .should('be.visible');
     });
