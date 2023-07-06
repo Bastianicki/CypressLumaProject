@@ -1,30 +1,34 @@
-import AccountPage from "../support/pages/customer-account/account-page/AccountPage";
-import CreateAccountPage from "../support/pages/customer-account/create/CreateAccountPage";
 import MainPageHeader from "../support/pages/main-page/MainPageHeader";
+import CreateAccountPage from "../support/pages/customer-account/create/CreateAccountPage";
+import AccountPageElements from "../support/elements/AccountPageElements";
+import CreateAccountPageElements from "../support/elements/CreateAccountPageElements";
+
 import RandomData from '../support/test-data/RandomData';
 import UserData from "../support/test-data/UserData";
 
 const mainPageHeader = new MainPageHeader();
 const createAccountPage = new CreateAccountPage();
-const accountPage = new AccountPage();
+const elementsOfAccountPage = new AccountPageElements();
+const elementsOfCreateAccountPage = new CreateAccountPageElements();
 
 describe('Magento Shop Application', () => {
     beforeEach(() => {
         cy.visit('https://magento.softwaretestingboard.com/');
     })
 
-    it ('Should create an account', () =>{
+    it('Should create successfully an account', () => {
+
         // Arrange: 
         mainPageHeader
             .clickOnCreateAnAccountButton();
 
         // Act:
         createAccountPage
-            .fillFirstNameField('FirstName')
-            .fillLastNameField('LastName')
+            .fillFirstNameInputField('FirstName')
+            .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
-            .fillEmailField(RandomData.generateRandomEmailAddress())
-            .fillBothPasswordFields(RandomData.generateRandomPassword(10))
+            .fillEmailInputField(RandomData.generateRandomEmailAddress())
+            .fillBothPasswordInputFields(RandomData.generateRandomPassword(10))
             .clickOnCreateAnAccountButton();
 
         // Assert:
@@ -34,112 +38,120 @@ describe('Magento Shop Application', () => {
         cy.wait(5000);
         cy.title().should('equal', expectedTitle);
 
-        accountPage.elements
+        elementsOfAccountPage
             .messageSuccess()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
 
-    it ('Should not create an account as the email is already used', () =>{
+    it('Should not create an account as the email is already used', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnCreateAnAccountButton();
 
         // Act:
         createAccountPage
-            .fillFirstNameField('FirstName')
-            .fillLastNameField('LastName')
+            .fillPasswordInputField('FirstName')
+            .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
-            .fillEmailField(UserData.emailAddress)
-            .fillBothPasswordFields(RandomData.generateRandomPassword(10))
+            .fillEmailInputField(UserData.emailAddress)
+            .fillBothPasswordInputFields(RandomData.generateRandomPassword(10))
             .clickOnCreateAnAccountButton();
 
         // Assert:
         const expectedTextInElement = 'There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.';
-        createAccountPage.elements
+        elementsOfCreateAccountPage
             .messageError()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
 
-    it ('Should not create an account as the email is invalid', () =>{
+    it('Should not create an account as the email is invalid', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnCreateAnAccountButton();
 
         // Act:
         createAccountPage
-            .fillFirstNameField('FirstName')
-            .fillLastNameField('LastName')
+            .fillPasswordInputField('FirstName')
+            .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
-            .fillEmailField("spg#gmail.com")
-            .fillBothPasswordFields(RandomData.generateRandomPassword(10))
+            .fillEmailInputField("spg#gmail.com")
+            .fillBothPasswordInputFields(RandomData.generateRandomPassword(10))
             .clickOnCreateAnAccountButton();
 
         // Assert:
         const expectedTextInElement = 'Please enter a valid email address (Ex: johndoe@domain.com).';
-        createAccountPage.elements.emailAddressError().invoke('text').should('equal', expectedTextInElement);
+        elementsOfCreateAccountPage.emailAddressError().invoke('text').should('equal', expectedTextInElement);
     })
 
-    it ('Should not create an account as the inputs in password field are not consistent', () =>{
+    it('Should not create an account as the inputs in password field are not consistent', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnCreateAnAccountButton();
 
         // Act:
         createAccountPage
-            .fillFirstNameField('FirstName')
-            .fillLastNameField('LastName')
+            .fillPasswordInputField('FirstName')
+            .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
-            .fillEmailField("spg@gmail.com")
-            .fillFirstPasswordField(RandomData.generateRandomPassword(10))
-            .fillSecondPasswordField(RandomData.generateRandomPassword(10))
+            .fillEmailInputField("spg@gmail.com")
+            .fillPasswordInputField(RandomData.generateRandomPassword(10))
+            .fillConfirmPasswordInputField(RandomData.generateRandomPassword(10))
             .clickOnCreateAnAccountButton();
 
         // Assert:
         const expectedTextInElement = 'Please enter the same value again.';
-        createAccountPage.elements
+        elementsOfCreateAccountPage
             .passwordConfirmationError()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
 
-    it ('Should not create an account as input in the password field is not equal or greater than 8 symbols', () =>{
+    it('Should not create an account as input in the password field is not equal or greater than 8 symbols', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnCreateAnAccountButton();
 
         // Act:
         createAccountPage
-            .fillFirstNameField('FirstName')
-            .fillLastNameField('LastName')
+            .fillPasswordInputField('FirstName')
+            .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
-            .fillEmailField("spg@gmail.com")
-            .fillBothPasswordFields(RandomData.generateRandomPassword(7))
+            .fillEmailInputField("spg@gmail.com")
+            .fillBothPasswordInputFields(RandomData.generateRandomPassword(7))
             .clickOnCreateAnAccountButton();
 
         // Assert:
         const expectedTextInElement = 'Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.';
-        createAccountPage.elements.passwordError().invoke('text').should('equal', expectedTextInElement);
+        elementsOfCreateAccountPage
+            .passwordError()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
 
-    it ('Should not create an account as input in the password field does not contain different classes of characters in password', () =>{
+    it('Should not create an account as input in the password field does not contain different classes of characters in password', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnCreateAnAccountButton();
 
         // Act:
         createAccountPage
-            .fillFirstNameField('FirstName')
-            .fillLastNameField('LastName')
+            .fillPasswordInputField('FirstName')
+            .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
-            .fillEmailField("spg@gmail.com")
-            .fillBothPasswordFields("12345678")
+            .fillEmailInputField("spg@gmail.com")
+            .fillBothPasswordInputFields("12345678")
             .clickOnCreateAnAccountButton();
 
         // Assert:
         const expectedTextInElement = 'Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.';
-        createAccountPage.elements
+        elementsOfCreateAccountPage
             .passwordError()
             .invoke('text')
             .should('equal', expectedTextInElement);

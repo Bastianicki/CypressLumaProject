@@ -1,35 +1,29 @@
+import ProductPageElements from "../../elements/ProductPageElements";
 import Color from "../../enums/Color";
 import Size from "../../enums/Size";
+
+const elements = new ProductPageElements();
+
 export default class ProductPage{
 
-    elements = {
-
-        pageTitle : () => cy.get('span.base[data-ui-id="page-title-wrapper"][itemprop="name"]'),
-
-        // buttons
-        addYourReviewButton : () => cy.get("[class='action add']"),
-        addToCartButton : () => cy.get("#product-addtocart-button"),
-        addToWishListButton : () => cy.xpath("//div[@class='product-addto-links']//child::a[class='action towishlist']"),
-        addToComapreButton : () => cy.xpath("//div[@class='product-addto-links']//child::a[@class='action tocompare']")
-    }
-    
+   
     clickOnAddYouReview(){
-        this.elements.addYourReviewButton().click();
+      elements.getAddYourReviewButton().click();
         return this;
     }
 
     clickOnAddToCartButton(){
-        this.elements.addToCartButton().click();
+        elements.getAddToCartButton().click();
         return this;
     }
 
     clickOnAddToWishListButton(){
-        this.elements.addToWishListButton().click();
+        elements.getAddToWishListButton().click();
         return this;
     }
 
     clickOnAddToCompareButton(){
-        this.elements.addToComapreButton().click();
+        elements.getAddToComapreButton().click();
         return this;
     }
 

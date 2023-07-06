@@ -1,49 +1,35 @@
+import LoginPageElements from '../../../elements/LoginPageElements.js';
 import UserData from '../../../test-data/UserData.js';
+
+const elements = new LoginPageElements();
 
 export default class LoginPage {
 
-    elements ={
-
-        // Customer Login
-        // Registered Customers
-        emailField : () => cy.get("#email"),
-        passwordField : () => cy.get("#pass"),
-        signInButton : () => cy.get("button.action.login.primary"),
-    
-    
-        // New Customers
-        createAnAccountButton : () => cy.get("a.action.create.primary"),
-    
-        // Messages
-        alertAccountSignIncorrect : () => cy.get("div[data-bind='html: $parent.prepareMessageForHtml(message.text)']")
-        
-    }
-
-    fillEmailField(email) {
-        this.elements.emailField().type(email);
+    fillEmailInputField(email) {
+        elements.getEmailInputField().type(email);
         return this;
     }
 
-    fillEmailFieldWithDefault() {
-        return this.fillEmailField(UserData.emailAddress);
+    fillEmailInputFieldWithDefault() {
+        return this.fillEmailInputField(UserData.emailAddress);
     }
 
-    fillPasswordField(password) {
-        this.elements.passwordField().type(password);
+    fillPasswordInputField(password) {
+        elements.getPasswordInputField().type(password);
         return this;
     }
 
-    fillPasswordFieldWithDefault() {
-        return this.fillPasswordField(UserData.password);
+    fillPasswordInputFieldWithDefault() {
+        return this.fillPasswordInputField(UserData.password);
     }
 
     clickOnSignInButton() {
-        this.elements.signInButton().click();
+        elements.getSignInButton().click();
         return this;
     }
 
     clickOnCreateAnAccountButton() {
-        this.elements.createAnAccountButton().click();
+        elements.getCreateAnAccountButton().click();
         return this;
     }
 }

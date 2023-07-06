@@ -1,14 +1,12 @@
-import AccountPage from "../support/pages/customer-account/account-page/AccountPage";
-import CreateAccountPage from "../support/pages/customer-account/create/CreateAccountPage";
-import LoginPage from "../support/pages/customer-account/login/LoginPage";
 import MainPageHeader from "../support/pages/main-page/MainPageHeader";
-import RandomData from '../support/test-data/RandomData';
-import UserData from "../support/test-data/UserData";
+import LoginPage from "../support/pages/customer-account/login/LoginPage";
+import AccountPage from "../support/pages/customer-account/account-page/AccountPage";
+import AccountPageElements from "../support/elements/AccountPageElements";
 
-const loginPage = new LoginPage();
 const mainPageHeader = new MainPageHeader();
-const createAccountPage = new CreateAccountPage();
+const loginPage = new LoginPage();
 const accountPage = new AccountPage();
+const elementsOfAccountPage = new AccountPageElements();
 
 describe('Magento Shop Application', () => {
     beforeEach(() => {
@@ -22,8 +20,8 @@ describe('Magento Shop Application', () => {
 
         // Act:
         loginPage
-            .fillEmailFieldWithDefault()
-            .fillPasswordFieldWithDefault()
+            .fillEmailInputFieldWithDefault()
+            .fillPasswordInputFieldWithDefault()
             .clickOnSignInButton();
 
         cy.wait(2000);
@@ -34,21 +32,19 @@ describe('Magento Shop Application', () => {
 
         // Assert: 
         mainPageHeader.elements
-            .signInButton(), 
-        mainPageHeader.elements
             .createAnAccountButton()
             .should('be.visible');
     });
 
-    it('should login, open account and verify whether sections (account information and address book) are visible', () => {
+    it('should login, open account and verify whether sections are visible', () => {
         // Arrange:
         mainPageHeader
             .clickOnSignInButton();
 
         // Act
         loginPage
-            .fillEmailFieldWithDefault()
-            .fillPasswordFieldWithDefault()
+            .fillEmailInputFieldWithDefault()
+            .fillPasswordInputFieldWithDefault()
             .clickOnSignInButton();
 
         cy.wait(2000);
@@ -56,13 +52,12 @@ describe('Magento Shop Application', () => {
         mainPageHeader
             .clickOnActionButton()
             .selectMyAccountOption();
-        
+
         // Assert:
-        accountPage.elements.contactInformatonBox(),
-        accountPage.elements.newsletterBox(),
-        accountPage.elements.defaultBillingAddressBox(),
-        accountPage.elements.defaultShippingAddressBox()
-            .should('be.visible');
+        elementsOfAccountPage.getContactInformationBox().should('be.visible');
+        elementsOfAccountPage.getNewsletterBox().should('be.visible');
+        elementsOfAccountPage.getDefaultBillingAddressBox().should('be.visible');
+        elementsOfAccountPage.getDefaultShippingAddressBox().should('be.visible');
     });
 
     it('should login, open account and verify whether checkbox for newsletter is unchecked', () => {
@@ -72,8 +67,8 @@ describe('Magento Shop Application', () => {
 
         // Act
         loginPage
-            .fillEmailFieldWithDefault()
-            .fillPasswordFieldWithDefault()
+            .fillEmailInputFieldWithDefault()
+            .fillPasswordInputFieldWithDefault()
             .clickOnSignInButton();
 
         cy.wait(2000);
@@ -84,13 +79,10 @@ describe('Magento Shop Application', () => {
 
         accountPage
             .clickOnEditNewsletterSettingsButton();
-        
+
         // Assert:
-        accountPage.elements
-            .generalSubscriptionCheckbox()
+        elementsOfAccountPage
+            .getGeneralSubscriptionCheckbox()
             .should('not.be.checked');
-
     });
-
-
 })

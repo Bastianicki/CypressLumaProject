@@ -1,17 +1,31 @@
-export default class SearchResults{
+import SearchResultsElements from "../../elements/SearchResultsElements";
 
-    elements = {
+const elements = new SearchResultsElements();
 
-            firstItemfiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[1]"),
-            secondItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[2]"),
-            thirdItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[3]"),
-            fourthItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[4]"),
-            fifthItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[5]")
-    }
+export default class SearchResults {
 
-    selectFirstItemFitered(){
-        this.elements.firstItemfiltered().click();
+    selectFirstItemFitered() {
+        elements.getFirstItemFiltered().click();
         return this;
     }
 
+    selectSecondItemFitered() {
+        elements.getSecondItemFiltered().click();
+        return this;
+    }
+
+    selectThirdItemFitered() {
+        elements.getThirdItemFiltered().click();
+        return this;
+    }
+
+    selectFourthItemFitered() {
+        elements.getFourthItemFiltered().click();
+        return this;
+    }
+
+    selectFifthItemFitered() {
+        elements.getFifthItemFiltered().click();
+        return this;
+    }
 }

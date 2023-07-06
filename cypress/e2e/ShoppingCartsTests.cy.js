@@ -27,8 +27,8 @@ describe('Magento Shop Application', () => {
 
         // Act: Enter valid login credentials and submit the form
         loginPage
-            .fillEmailFieldWithDefault()
-            .fillPasswordFieldWithDefault()
+            .fillEmailInputFieldWithDefault()
+            .fillPasswordInputFieldWithDefault()
             .clickOnSignInButton();
 
         mainPageHeader

@@ -1,10 +1,13 @@
-import LoginPage from "../support/pages/customer-account/login/LoginPage";
 import MainPageHeader from "../support/pages/main-page/MainPageHeader";
+import LoginPage from "../support/pages/customer-account/login/LoginPage";
+import LoginPageElements from "../support/elements/LoginPageElements";
+
 import RandomData from '../support/test-data/RandomData';
 import UserData from '../support/test-data/UserData';
 
-const loginPage = new LoginPage();
 const mainPageHeader = new MainPageHeader();
+const loginPage = new LoginPage();
+const elements = new LoginPageElements();
 
 describe('Magento Shop Application', () => {
     beforeEach(() => {
@@ -12,15 +15,15 @@ describe('Magento Shop Application', () => {
     });
 
     it('should login to the application and verify user-specific features', () => {
+
         // Arrange: Click on the login link
-        //cy.get('.header.links').contains('Sign In').click();
         mainPageHeader
             .clickOnSignInButton();
 
         // Act: Enter valid login credentials and submit the form
         loginPage
-            .fillEmailFieldWithDefault()
-            .fillPasswordFieldWithDefault()
+            .fillEmailInputFieldWithDefault()
+            .fillPasswordInputFieldWithDefault()
             .clickOnSignInButton();
 
         // Assert: Verify the title and welcome message
@@ -35,14 +38,15 @@ describe('Magento Shop Application', () => {
     });
 
     it('should not login to the application due to incorrect credentials', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnSignInButton();
 
         // Act:
         loginPage
-            .fillEmailField(RandomData.generateRandomEmailAddress())
-            .fillPasswordField(RandomData.generateRandomPassword(20))
+            .fillEmailInputField(RandomData.generateRandomEmailAddress())
+            .fillPasswordInputField(RandomData.generateRandomPassword(20))
             .clickOnSignInButton();
 
         // Assert:
@@ -51,6 +55,6 @@ describe('Magento Shop Application', () => {
 
         cy.wait(3000);
         cy.title().should('equal', expectedTitle);
-        loginPage.elements.alertAccountSignIncorrect().invoke('text').should('equal', expectedTextInElement);
+        elements.getAlertAccountSignInIncorrect().invoke('text').should('equal', expectedTextInElement);
     })
 });
