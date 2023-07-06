@@ -4,24 +4,24 @@ export default class CreateAccountPage {
 
     elements = {
 
-    // Create New Customer Account
-    // Personal Information
-    firstNameField : () => cy.get("#firstname"),
-    lastNameField : () => cy.get("#lastname"),
-    signUpForNewsLetterCheckbox : () => cy.get("#is_subscribed"),
-
-    // Sign-in Information
-    emailField : () => cy.get("#email_address"),
-    passwordField : () => cy.get("#password"),
-    confirmPasswordField : () => cy.get("#password-confirmation"),
-    createAnAccountButton : () => cy.get("button[title='Create an Account']"),
-
-    // Messages
-    messageError : () => cy.get(".message-error > div"),
-    emailAddressError : () => cy.get("#email_address-error"),
-    passwordConfirmationError : () => cy.get("#password-confirmation-error"),
-    passwordError : () => cy.get("#password-error")
-
+        // Create New Customer Account
+        // Personal Information
+        firstNameField : () => cy.get("#firstname"),
+        lastNameField : () => cy.get("#lastname"),
+        signUpForNewsLetterCheckbox : () => cy.get("#is_subscribed"),
+    
+        // Sign-in Information
+        emailField : () => cy.get("#email_address"),
+        passwordField : () => cy.get("#password"),
+        confirmPasswordField : () => cy.get("#password-confirmation"),
+        createAnAccountButton : () => cy.get("button[title='Create an Account']"),
+    
+        // Messages
+        messageError : () => cy.get(".message-error > div"),
+        emailAddressError : () => cy.get("#email_address-error"),
+        passwordConfirmationError : () => cy.get("#password-confirmation-error"),
+        passwordError : () => cy.get("#password-error")
+    
     }
 
     fillFirstNameField(firstName) {

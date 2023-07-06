@@ -4,22 +4,21 @@ export default class LoginPage {
 
     elements ={
 
-    // Customer Login
-    // Registered Customers
-    emailField : () => cy.get("#email"),
-    passwordField : () => cy.get("#pass"),
-    signInButton : () => cy.get("button.action.login.primary"),
-
-
-    // New Customers
-    createAnAccountButton : () => cy.get("a.action.create.primary"),
-
-    // Messages
-    alertAccountSignIncorrect : () => cy.get("div[data-bind='html: $parent.prepareMessageForHtml(message.text)']")
+        // Customer Login
+        // Registered Customers
+        emailField : () => cy.get("#email"),
+        passwordField : () => cy.get("#pass"),
+        signInButton : () => cy.get("button.action.login.primary"),
     
+    
+        // New Customers
+        createAnAccountButton : () => cy.get("a.action.create.primary"),
+    
+        // Messages
+        alertAccountSignIncorrect : () => cy.get("div[data-bind='html: $parent.prepareMessageForHtml(message.text)']")
+        
     }
 
-    // Methods:
     fillEmailField(email) {
         this.elements.emailField().type(email);
         return this;

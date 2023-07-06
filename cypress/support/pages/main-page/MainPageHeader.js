@@ -1,5 +1,5 @@
 export default class MainPageHeader{
-    
+
     elements = {
 
         // Panel Header
@@ -26,7 +26,7 @@ export default class MainPageHeader{
 
         // Search
         searchEntireStoreField : () => cy.get("#search"),
-        searchButton : () => cy.get("['title='Search']"),
+        searchButton : () => cy.get("[title='Search']"),
         shoppingCartButton : () => cy.get("[class='action showcart']")
 
     }

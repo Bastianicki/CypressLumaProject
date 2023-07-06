@@ -7,11 +7,11 @@ export default class SearchResults{
             thirdItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[3]"),
             fourthItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[4]"),
             fifthItemFiltered : () => cy.xpath("//ol[@class='products list items product-items']//child::li[5]")
-        }
+    }
 
-        selectFirstItemFitered(){
-            this.elements.firstItemfiltered().click();
-            return this;
-        }
+    selectFirstItemFitered(){
+        this.elements.firstItemfiltered().click();
+        return this;
+    }
 
 }
