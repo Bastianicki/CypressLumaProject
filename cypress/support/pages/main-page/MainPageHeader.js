@@ -69,7 +69,7 @@ export default class MainPageHeader {
         return this;
     }
 
-    clickOnsearchButton() {
+    clickOnSearchButton() {
         elements.getSearchButton().click();
         return this;
     }

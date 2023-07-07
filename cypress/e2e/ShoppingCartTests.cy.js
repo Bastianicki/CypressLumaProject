@@ -36,12 +36,11 @@ describe('Magento Shop Application', () => {
 
         mainPageHeader
             .typeInSearchField("Inez Full Zip Jacket")
-            .clickOnsearchButton();
+            .clickOnSearchButton();
 
         cy.wrap(searchResults.selectFirstItemFitered()).then(() => {
             cy.wait(5000);
         });
-
 
         productPage
             .pickSizeOfProduct(Size.M)
@@ -67,7 +66,7 @@ describe('Magento Shop Application', () => {
 
         mainPageHeader
             .typeInSearchField("Inez Full Zip Jacket")
-            .clickOnsearchButton();
+            .clickOnSearchButton();
 
         cy.wrap(searchResults.selectFirstItemFitered()).then(() => {
             cy.wait(5000);
