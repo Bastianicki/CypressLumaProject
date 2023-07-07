@@ -15,7 +15,9 @@ describe('Magento Shop Application', () => {
         cy.visit('https://magento.softwaretestingboard.com/');
     })
 
-    it('should login to the application and sign out', () => {
+
+    it('should login to the application and than sign out and verify whether button "Create an Account" is visible', () => {
+
         //Arrange:
         mainPageHeader
             .clickOnSignInButton();
@@ -34,16 +36,17 @@ describe('Magento Shop Application', () => {
 
         // Assert: 
         elementsOfMainPageHeader
-            .createAnAccountButton()
+            .getCreateAnAccountButton()
             .should('be.visible');
     });
 
-    it('should login, open account and verify whether sections are visible', () => {
+    it('should login, open account and verify whether basic sections of account are visible', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnSignInButton();
 
-        // Act
+        // Act:
         loginPage
             .fillEmailInputFieldWithDefault()
             .fillPasswordInputFieldWithDefault()
@@ -63,11 +66,12 @@ describe('Magento Shop Application', () => {
     });
 
     it('should login, open account and verify whether checkbox for newsletter is unchecked', () => {
+
         // Arrange:
         mainPageHeader
             .clickOnSignInButton();
 
-        // Act
+        // Act:
         loginPage
             .fillEmailInputFieldWithDefault()
             .fillPasswordInputFieldWithDefault()

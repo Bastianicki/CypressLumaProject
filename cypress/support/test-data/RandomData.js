@@ -24,6 +24,11 @@ export default class RandomData {
   }
 
   static generateRandomPassword(length) {
+    const minLength = 7;
+    if (length < minLength) {
+      throw new Error(`Length should be at least ${minLength} characters.`);
+    }
+    
     const validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+";
     let password = "";
     for (let i = 0; i < length; i++) {

@@ -16,7 +16,7 @@ describe('Magento Shop Application', () => {
         cy.visit('https://magento.softwaretestingboard.com/');
     })
 
-    it('Should create successfully an account', () => {
+    it('Should successfully create an account', () => {
 
         // Arrange: 
         mainPageHeader
@@ -32,14 +32,14 @@ describe('Magento Shop Application', () => {
             .clickOnCreateAnAccountButton();
 
         // Assert:
-        const expectedTitle = 'My Account';
-        const expectedTextInElement = 'Thank you for registering with Main Website Store.';
-
         cy.wait(5000);
+
+        const expectedTitle = 'My Account';
         cy.title().should('equal', expectedTitle);
 
+        const expectedTextInElement = 'Thank you for registering with Main Website Store.';
         elementsOfAccountPage
-            .messageSuccess()
+            .getMessageSuccess()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
@@ -52,7 +52,7 @@ describe('Magento Shop Application', () => {
 
         // Act:
         createAccountPage
-            .fillPasswordInputField('FirstName')
+            .fillFirstNameInputField('FirstName')
             .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
             .fillEmailInputField(UserData.emailAddress)
@@ -62,7 +62,7 @@ describe('Magento Shop Application', () => {
         // Assert:
         const expectedTextInElement = 'There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.';
         elementsOfCreateAccountPage
-            .messageError()
+            .getMessageError()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
@@ -75,7 +75,7 @@ describe('Magento Shop Application', () => {
 
         // Act:
         createAccountPage
-            .fillPasswordInputField('FirstName')
+            .fillFirstNameInputField('FirstName')
             .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
             .fillEmailInputField("spg#gmail.com")
@@ -84,7 +84,10 @@ describe('Magento Shop Application', () => {
 
         // Assert:
         const expectedTextInElement = 'Please enter a valid email address (Ex: johndoe@domain.com).';
-        elementsOfCreateAccountPage.emailAddressError().invoke('text').should('equal', expectedTextInElement);
+        elementsOfCreateAccountPage
+            .getEmailAddressError()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
 
     it('Should not create an account as the inputs in password field are not consistent', () => {
@@ -95,7 +98,7 @@ describe('Magento Shop Application', () => {
 
         // Act:
         createAccountPage
-            .fillPasswordInputField('FirstName')
+            .fillFirstNameInputField('FirstName')
             .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
             .fillEmailInputField("spg@gmail.com")
@@ -106,7 +109,7 @@ describe('Magento Shop Application', () => {
         // Assert:
         const expectedTextInElement = 'Please enter the same value again.';
         elementsOfCreateAccountPage
-            .passwordConfirmationError()
+            .getPasswordConfirmationError()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
@@ -119,7 +122,7 @@ describe('Magento Shop Application', () => {
 
         // Act:
         createAccountPage
-            .fillPasswordInputField('FirstName')
+            .fillFirstNameInputField('FirstName')
             .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
             .fillEmailInputField("spg@gmail.com")
@@ -129,7 +132,7 @@ describe('Magento Shop Application', () => {
         // Assert:
         const expectedTextInElement = 'Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.';
         elementsOfCreateAccountPage
-            .passwordError()
+            .getPasswordError()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })
@@ -142,7 +145,7 @@ describe('Magento Shop Application', () => {
 
         // Act:
         createAccountPage
-            .fillPasswordInputField('FirstName')
+            .fillFirstNameInputField('FirstName')
             .fillLastNameInputField('LastName')
             .toggleSignUpForNewsLetterCheckbox(true)
             .fillEmailInputField("spg@gmail.com")
@@ -152,7 +155,7 @@ describe('Magento Shop Application', () => {
         // Assert:
         const expectedTextInElement = 'Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.';
         elementsOfCreateAccountPage
-            .passwordError()
+            .getPasswordError()
             .invoke('text')
             .should('equal', expectedTextInElement);
     })

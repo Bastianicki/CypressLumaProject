@@ -1,4 +1,5 @@
 import MainPageHeader from "../support/pages/main-page/MainPageHeader";
+import MainPageHeaderElements from "../support/elements/MainPageHeaderElements";
 import LoginPage from "../support/pages/customer-account/login/LoginPage";
 import LoginPageElements from "../support/elements/LoginPageElements";
 
@@ -7,7 +8,8 @@ import UserData from '../support/test-data/UserData';
 
 const mainPageHeader = new MainPageHeader();
 const loginPage = new LoginPage();
-const elements = new LoginPageElements();
+const elementsOfLoginPage = new LoginPageElements();
+const elementsOfMainPageHeader = new MainPageHeaderElements();
 
 describe('Magento Shop Application', () => {
     beforeEach(() => {
@@ -27,34 +29,40 @@ describe('Magento Shop Application', () => {
             .clickOnSignInButton();
 
         // Assert: Verify the title and welcome message
-        const expectedTitle = 'Home Page';
-        const expectedTextInElement = `Welcome, ${UserData.userName}!`;
-
         cy.wait(4000);
+
+        const expectedTitle = 'Home Page';
         cy.title().should('equal', expectedTitle);
-        mainPageHeader.elements.welcomeMessage()
+
+        const expectedTextInElement = `Welcome, ${UserData.userName}!`;
+        elementsOfMainPageHeader
+            .getWelcomeMessage()
             .invoke('text')
             .should('equal', expectedTextInElement);
     });
 
     it('should not login to the application due to incorrect credentials', () => {
 
-        // Arrange:
+        // Arrange: Click on the login link
         mainPageHeader
             .clickOnSignInButton();
 
-        // Act:
+        // Act: Enter invalid login credentials and submit the form
         loginPage
             .fillEmailInputField(RandomData.generateRandomEmailAddress())
             .fillPasswordInputField(RandomData.generateRandomPassword(20))
             .clickOnSignInButton();
 
-        // Assert:
-        const expectedTitle = 'Customer Login';
-        const expectedTextInElement = 'The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.';
-
+        // Assert: Verify the title and error message
         cy.wait(3000);
+
+        const expectedTitle = 'Customer Login';
         cy.title().should('equal', expectedTitle);
-        elements.getAlertAccountSignInIncorrect().invoke('text').should('equal', expectedTextInElement);
+
+        const expectedTextInElement = 'The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.';
+        elementsOfLoginPage
+            .getAlertAccountSignInIncorrect()
+            .invoke('text')
+            .should('equal', expectedTextInElement);
     })
 });

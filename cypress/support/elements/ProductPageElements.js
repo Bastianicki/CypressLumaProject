@@ -20,4 +20,9 @@ export default class ProductPageElements {
     getAddToComapreButton() {
         return cy.xpath("//div[@class='product-addto-links']//child::a[@class='action tocompare']");
     }
+
+    //Messages:
+    getProductAddedMessage() {
+        return cy.get('div[data-bind="html: $parent.prepareMessageForHtml(message.text)"]');
+    }
 }
